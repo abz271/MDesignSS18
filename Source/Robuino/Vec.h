@@ -1,9 +1,7 @@
-
 #ifndef VEC_H
 #define	VEC_H
 
 class Vec {
-
 public:
     float x;				// x Wert des Vektors
     float y;				// y Wert des Vektors
@@ -17,7 +15,6 @@ public:
     float getY();
     void setX(float x);
     void setY(float y);
-
 };
 
 #endif	/* VEC_H */

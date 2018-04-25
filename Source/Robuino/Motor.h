@@ -1,4 +1,3 @@
-
 #ifndef MOTOR_H
 #define	MOTOR_H
 class Motor {
@@ -19,11 +18,7 @@ private:
 
     unsigned char nextVelocityPwmLeft = 0;		// Ziel Geschwindigkeit
     unsigned char nextVelocityPwmRight = 0;		// Ziel Geschwindigkeit
-
-
-
 public:
-
     Motor();
     ~Motor();
 

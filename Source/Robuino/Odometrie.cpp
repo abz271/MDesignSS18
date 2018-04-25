@@ -2,6 +2,7 @@
 #include "Odometrie.h"
 #include <Encoder.h>
 #include <Arduino.h>
+
 // Globale Encoder, werden für die Bibliothek benötigt um die Stellung der Räder zu erfassen
 // Es war nicht möglich diese als Attribute der Klasse um zu setzen
 Encoder leftWheel(2, 6);
@@ -33,7 +34,6 @@ void Odometrie::setPosition(int x, int y) {
 }
 
 void Odometrie::updateOdometrie() {
-
 	// Variablen
 	float leftWheelChange = 0;
 	float rightWheelChange = 0;
@@ -56,21 +56,15 @@ void Odometrie::updateOdometrie() {
 }
 
 float Odometrie::getAngle() {
-
 	return alpha_odometrie;
-
 }
 
 int Odometrie::getX_position() {
-
 	return x_odometrie;
-
 }
 
 int Odometrie::getY_position() {
-
 	return y_odometrie;
-
 }
 
 /*
@@ -116,7 +110,6 @@ void Odometrie::getDiffWheelAngle(float& leftRotaryChange,
 	// Wieder auf 0 setzen
 	leftWheel.write(0);
 	rightWheel.write(0);
-
 }
 
 /*
@@ -124,7 +117,6 @@ void Odometrie::getDiffWheelAngle(float& leftRotaryChange,
  * getDiffWheelDistance
  */
 void Odometrie::testRotary() {
-
 	float left;
 	float right;
 
@@ -136,7 +128,6 @@ void Odometrie::testRotary() {
 	unsigned long timeCur = millis();
 
 	if (timeCur >= timeLast + 500) {
-
 		timeLast = timeCur;
 
 		getDiffWheelDistance(left, right);
@@ -150,9 +141,7 @@ void Odometrie::testRotary() {
 			xLast = left;
 			yLast = right;
 		}
-
 	}
-
 }
 
 void Odometrie::testBerechnung(float diffLeft[], float diffRight[],
@@ -162,7 +151,6 @@ void Odometrie::testBerechnung(float diffLeft[], float diffRight[],
 
 	int i = 0;
 	for (i = 0; i < arraySize; i++) {
-
 		// Bewegung, Differenz in der Position des Fahrzeuges berechnen
 		d_center = (diffRight[i] - diffLeft[i]) / 2;
 
@@ -189,12 +177,10 @@ void Odometrie::testBerechnung(float diffLeft[], float diffRight[],
 		Serial.print(alpha_odometrie);
 		Serial.println();
 		Serial.println();
-
 	}
 }
 
 void Odometrie::testOdometrie(){
-
 	static int i = 0;
 
 	// nur 10 mal pro sekunde abfragen
@@ -202,7 +188,6 @@ void Odometrie::testOdometrie(){
 	unsigned long timeCur = millis();
 
 	if (timeCur >= timeLast + 500) {
-
 		timeLast = timeCur;
 
 		updateOdometrie();
@@ -218,8 +203,6 @@ void Odometrie::testOdometrie(){
 		Serial.print(alpha_odometrie);
 		Serial.println();
 
-
 		i++;
-
 	}
 }

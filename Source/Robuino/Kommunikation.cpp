@@ -6,10 +6,8 @@
  * Dieser Arduino dient als Master
  */
 Kommunikation::Kommunikation() {
-
 	// Verbindung als Master aufbauen
 	Wire.begin();
-
 }
 
 /*
@@ -19,7 +17,6 @@ Kommunikation::Kommunikation() {
  */
 void Kommunikation::DataFromHardware(String& comString) {
 	// Kommunikation starten, Daten anfragen
-
 	Wire.requestFrom(hardwareAddress, stringLength);
 
 	// Char array anlegen
@@ -49,7 +46,6 @@ void Kommunikation::DataFromPosition(byte* comString) {
 		comString[counter] = Wire.read();
 		counter++;
 	}
-
 }
 /*
  * Gibt die aktuelle Position der Positionsgruppe per Referenze zurück
@@ -91,7 +87,6 @@ bool Kommunikation::getPosition(float& xPos, float& yPos, float& angle) {
  * Diese Methode kümmert sich um das Übersetzen des JSONs
  */
 bool Kommunikation::getStopEnemy() {
-
 	// Buffer fÃ¼r den Json String
 	StaticJsonBuffer<100> jsonBuffer;
 
@@ -110,7 +105,6 @@ bool Kommunikation::getStopEnemy() {
 
 	// Return des Ergebnisses
 	return result;
-
 }
 
 void Kommunikation::testKommunikation(){
@@ -122,7 +116,6 @@ void Kommunikation::testKommunikation(){
 	float angle;
 
 	signalOk = getPosition(x, y, angle);
-
 
 	if(millis() > time + 100){
 		time = millis();
@@ -138,20 +131,14 @@ void Kommunikation::testKommunikation(){
 		 Serial.print(enemyDet);
 		 Serial.println();
 	}
-
-
 }
-
 
 // Master testen
 // Der Master empfängt etwas
-
 void Kommunikation::testAsMaster() {
-
 	static unsigned long mili = millis();
 
 	if (millis() > (mili + 1500)) {
-
 		static int number = 0;
 		Serial.print("Abfrage ");
 		Serial.print(number);
@@ -191,19 +178,16 @@ void Kommunikation::testAsMaster() {
 
 		mili = millis();
 	}
-
 }
 
 void send() {
 	Wire.write("hello i^2c");
 }
 
-  //Slave testen
-  //Der Slave sendet etwas
+//Slave testen
+//Der Slave sendet etwas
 void Kommunikation::testAsSlave() {
-
 	Wire.begin(3);
 	Wire.onRequest(send);
-
 }
 

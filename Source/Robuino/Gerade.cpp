@@ -6,7 +6,6 @@ Gerade::Gerade() {
 	k = 0;
 }
 
-
 // Gerade anlegen aus Orts- und Richtungsvektor
 Gerade::Gerade(Vec o, Vec r) :
 		o(o), r(r) {

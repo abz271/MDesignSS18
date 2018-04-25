@@ -4,10 +4,8 @@
 #include <Wire.h>
 #include <ArduinoJson.h>
 
-
 class Kommunikation {
 private:
-
 	int positionAddress = 1;
 	int hardwareAddress = 4;
 
@@ -16,9 +14,7 @@ private:
 	void DataFromHardware(String& comString);
 	void DataToHardware(String comString);
 	void DataFromPosition(byte* comString);
-
 public:
-
 	Kommunikation();
 	bool getStopEnemy();
 	bool getPosition(float& xPos, float& yPos, float& angle);
@@ -28,9 +24,6 @@ public:
 	void testAsMaster();
 	void testAsSlave();
 	void testKommunikation();
-
-
-
 };
 
 #endif /* KOMMUNIKATION_H */

@@ -6,7 +6,6 @@
 
 class Odometrie {
 private:
-
 	// Geometrie des Fahrzeugs
     float Achsabstand = 273.0*(360.0/361.0);	// in mm
 
@@ -27,7 +26,6 @@ private:
     // Rotary Encoder Methoden
 	void getDiffWheelDistance(float& leftWheelChange, float& rightWheelChange);
 	void getDiffWheelAngle(float& leftWheelChange, float& rightWheelChange);
-
 public:
     // Nach aussen benötigte Methoden
     Odometrie();
@@ -48,9 +46,6 @@ public:
     void testOdometrie();
     void testRotary();
     void testBerechnung(float diffLeft[], float diffRight[], int arraySize);
-
-
-
 };
 
 #endif /* ODOMETRIE_H */

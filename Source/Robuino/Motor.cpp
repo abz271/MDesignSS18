@@ -1,6 +1,7 @@
 #include "Motor.h"
 #include "Odometrie.h"
 #include <Arduino.h>
+
 Motor::Motor() {
 	pinMode(in1, OUTPUT);
 	pinMode(in2, OUTPUT);
@@ -50,6 +51,7 @@ void Motor::driveStraight(){
 	nextVelocityPwmLeft = 150;
 	nextVelocityPwmRight = 150;
 }
+
 // Geregelte Geradeausfahrt
 void Motor::driveStraightRegulated(unsigned char velocity, float difference){
 	digitalWrite(in1, LOW);

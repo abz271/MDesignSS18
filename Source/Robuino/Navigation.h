@@ -7,7 +7,6 @@
 #include "Gerade.h"
 #include "Motor.h"
 
-
 class Navigation {
 private:
 	// Klassen anlegen
@@ -34,7 +33,6 @@ private:
     int x_aktuell = 0;			// aktuelle Position des Fahrzeugs [x]
     int y_aktuell = 0;			// aktuelle Position des Fahrzeugs [y]
 
-
     // Werte vom Positionsteam
     int x_PositionteamOld = 0;
     int x_PositionteamNew = 0;
@@ -51,7 +49,6 @@ private:
 	float safetyRadius = 23;		// Sicherheitsradius bei anfahren von Punkten
     float e = 0.0;					// Differenz Soll-Ist-Winkel
     float direction = 0;			// Kürzeste Richtung fürs Drehen
-
 public:	// Allgemeines
     Navigation();
     bool PositionInLava();
@@ -79,7 +76,6 @@ public: // Getter
     int getPosition();
     int getY();
     int getX();
-
 public:	// Setter
     void setStartParameters(int x, int y, float angle);
     void setPrePositionteams(bool StateStartup);
@@ -89,8 +85,7 @@ public:	// Setter
     void setPosition(int Position);
     void setSpeed(int speed);
     void setNextPosition();
-
-
+	
     void testAngle(float odo, float ziel);
 };
 

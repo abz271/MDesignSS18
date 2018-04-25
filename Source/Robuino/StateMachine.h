@@ -29,17 +29,13 @@ private:
 	const unsigned long intervalStop = 3000;
 	const unsigned long intervalDrive = 1500;
 	const unsigned long intervalPlaytime = 90000;
-
 public:
-
-
 	StateMachine();
 	void evalStateMachine();
 	void UpdateData();
 	void applyOutputToProcess();
 
 	Navigation& getNavigation();
-
 };
 
 #endif	/* STATEMACHINE_H */

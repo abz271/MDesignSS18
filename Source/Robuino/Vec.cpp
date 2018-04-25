@@ -7,6 +7,7 @@ Vec::Vec() {
     y = 0;
 
 }
+
 // Vektor bekannten Winkel berechnen
 Vec::Vec(float angle){
 	x = cos ((angle)*M_PI/180);

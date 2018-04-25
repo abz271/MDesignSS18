@@ -5,14 +5,17 @@
 Navigation::Navigation(){
 	Position = 0;
 }
+
 // Getter, der die Referenz auf die in Navigation benutzte Odometrieinstanz wiedergibt
 Odometrie& Navigation::getOdometrie(){
 	return Odo;
 }
+
 // Getter, der die Referenz auf die in Navigation benutzte Motorinstanz wiedergibt
 Motor& Navigation::getMotor(){
 	return Moto;
 }
+
 // Getter, der die Referenz auf die in Navigation benutzte Kommunikatioinstanz wiedergibt
 Kommunikation& Navigation::getJSON(){
 	return JSON;
@@ -40,7 +43,6 @@ void Navigation::UpdateData() {
 
 	// Daten von Positionteam sind gut
 	if (JSON.getPosition(xFromPosition, yFromPosition, angleFromPosition) && takePosition){
-
 		// Sind die Daten vom Positionteam die gleichen?
 		// Grund: Positionsteam taktet nur mit 5 Hz, Odometrie mit max. Arduinogeschw.
 		// => Odometrie werte nehmen
@@ -48,7 +50,8 @@ void Navigation::UpdateData() {
 		if((x_PositionteamOld == x_PositionteamNew) && (y_PositionteamOld == y_PositionteamNew)) {
 			x_aktuell = Odo.getX_position();
 			y_aktuell = Odo.getY_position();
-		}else{
+		}
+		else{
 			x_aktuell = int(xFromPosition);
 			y_aktuell = int(yFromPosition);
 			Odo.setPosition(x_aktuell, y_aktuell);
@@ -66,7 +69,8 @@ void Navigation::UpdateData() {
 
 		// Daten von Positionteam sind schlecht
 		// => Nur mit Odometrie fahren
-	} else {
+	} 
+	else {
 		x_aktuell = Odo.getX_position();
 		y_aktuell = Odo.getY_position();
 
@@ -78,7 +82,6 @@ void Navigation::UpdateData() {
 
 // Berechnung des Winkels zwischen der aktuellen Position und der Zielposition
 float Navigation::getCalculateAngle(int x, int y) {
-
 	double delta_x = x - x_aktuell;
 	double delta_y = y - y_aktuell;
 	double Winkel = atan2(delta_y, delta_x) * 180 / PI;
@@ -144,6 +147,7 @@ bool Navigation::DetectedEnemyInArea(){
 	if (((xPositionObject > 0) && (xPositionObject < 3000)) && ((yPositionObject > 0) && (yPositionObject < 2000))){
 		result = true;
 	}
+	
 	return result;
 }
 
@@ -173,6 +177,7 @@ bool Navigation::CrashIncoming(){
 	if (((a >= 0) && (a < distance)) || ((b >= 0) && (b < distance)) || ((c >= 0) && (c < distance)) || ((d >= 0) && (d < distance))){
 		TooClose = true;
 	}
+	
 	return TooClose;
 }
 
@@ -219,7 +224,6 @@ int Navigation::getMaximalPosition(){
 void Navigation::setSpeed(int speed){
 	this->speed = speed;
 }
-
 
 void Navigation::setTargetAngle(float angle) {
 	if (angle >= 360.0){
