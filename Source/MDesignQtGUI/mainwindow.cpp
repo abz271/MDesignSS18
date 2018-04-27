@@ -6,6 +6,7 @@
 #include <QtWidgets>
 #include <string>
 
+// Strings for comparison with uart-data
 QString InitStateID = "initState";
 QString NextPointID = "nextPoint";
 QString TurnToTargetAngleID = "turnToTargetAngle";
@@ -20,17 +21,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     QPixmap gamefield("C:/MDesign/Spielfeld.png");
     ui->gamefield_label->setPixmap(gamefield);
+    // declare serialport
     arduino = new QSerialPort;
     arduino_is_available = false;
     arduino_port_name = "";
     serialBuffer = "";
 
+    // check for available ports
     qDebug() << "Number of available ports: " << QSerialPortInfo::availablePorts().length();
     foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
         qDebug() << serialPortInfo.portName();
     }
+
+    // can't read product- or vendor-id from COM-Port via Bluetooth
+    // port-name has to be hard coded
     arduino_is_available = true;
     arduino_port_name = "COM7";
+
+    // read ids from every available port
     /*foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
         qDebug() << serialPortInfo.portName();
         qDebug() << "Has vendor ID: " << serialPortInfo.hasVendorIdentifier();
@@ -42,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
             qDebug() << "Product ID: " << serialPortInfo.productIdentifier();
         }
     }
+
+    // set port-name
     foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
         if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
             if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
@@ -75,13 +85,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// if no data arrives, start serial Monitor for desired COM-port in arduino-ide, close it and restart GUI, don't know why
 void MainWindow::readDataFromArduino(){
-    serialData = arduino->readAll();
-    serialBuffer = QString::fromStdString(serialData.toStdString());
+    if(arduino->canReadLine()){
+        serialData = arduino->readLine();
+        serialBuffer = QString::fromStdString(serialData.toStdString());
+    }
 
     serialBuffer.remove("\r");
     serialBuffer.remove("\n");
 
+    // depending on the current state, color associated QTextBrowser green and all the others white
     if (serialBuffer == InitStateID){
         ui->initState->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
 
@@ -91,6 +105,7 @@ void MainWindow::readDataFromArduino(){
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
+
     else if(serialBuffer == NextPointID){
         ui->nextPoint->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
 
@@ -100,6 +115,7 @@ void MainWindow::readDataFromArduino(){
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
+
     else if(serialBuffer == TurnToTargetAngleID){
         ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
 
@@ -109,6 +125,7 @@ void MainWindow::readDataFromArduino(){
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
+
     else if(serialBuffer == StartUpID){
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
 
@@ -118,6 +135,7 @@ void MainWindow::readDataFromArduino(){
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
+
     else if(serialBuffer == DriveStraightRegulatedID){
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
 
@@ -127,6 +145,7 @@ void MainWindow::readDataFromArduino(){
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
+
     else if(serialBuffer == StopMotorID){
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
 
@@ -135,6 +154,25 @@ void MainWindow::readDataFromArduino(){
         ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+    }
+
+    // if coordinates received display them in associated QTextBrowser
+    else if(serialBuffer.startsWith("x")){
+        qDebug() << "x am start" << endl;
+        serialBuffer.remove("x:");
+        ui->x_display->setText(serialBuffer);
+    }
+
+    else if(serialBuffer.startsWith("y")){
+        qDebug() << "y am start" << endl;
+        serialBuffer.remove("y:");
+        ui->y_display->setText(serialBuffer);
+    }
+
+    else if(serialBuffer.startsWith("a")){
+        qDebug() << "angle am start" << endl;
+        serialBuffer.remove("a:");
+        ui->angle_display->setText(serialBuffer);
     }
 
     qDebug() << serialBuffer;
