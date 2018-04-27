@@ -84,7 +84,6 @@ void Odometrie::getDiffWheelDistance(float& leftWheelChange,
 	// Berechnung zurück gelegte Strecke mit dem Umfang der Räder
 	leftWheelChange = leftRotaryChange / 360.0 * radUmfangLinks;
 	rightWheelChange = rightRotaryChange / 360.0 * radUmfangRechts;
-
 }
 
 /*

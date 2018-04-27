@@ -111,7 +111,7 @@ void StateMachine::evalStateMachine() {
 				timeLast = timeCur;
 				timeToPlay = playTime;
 				currentState = nextPoint;
-				Serial.println("Von Init nach next Point");
+				Serial.println("nextPoint");
 			}
 		}
 			break;
@@ -125,7 +125,7 @@ void StateMachine::evalStateMachine() {
 				Navi.setSpeed(speedmaxturn);
 				Navi.setTargetAngle(Navi.getTargetAngle());
 				currentState = turnToTargetAngle;
-				Serial.println("von nextPoint nach turnToTargetAngle");
+				Serial.println("turnToTargetAngle");
 			}
 		}
 			break;
@@ -138,7 +138,7 @@ void StateMachine::evalStateMachine() {
 				Navi.setSpeed(speedStartUp);
 				timeLast = timeCur;
 				currentState = startUp;
-				Serial.println("von turnToTargetAngle nach startUp");
+				Serial.println("startUp");
 			}
 		}
 			break;
@@ -151,7 +151,7 @@ void StateMachine::evalStateMachine() {
 				Navi.setSpeed(speedStartUp);
 				timeLast = timeCur;
 				currentState = driveShortlyStraight;
-				Serial.println("von turnToAvoidTargetAngle nach driveShortlyStraight");
+				Serial.println("driveShortlyStraight");
 			}
 		}
 			break;
@@ -164,11 +164,11 @@ void StateMachine::evalStateMachine() {
 				Navi.setSpeed(speedStop);
 				timeStop = timeCur;
 				currentState = stopMotor;
-				Serial.println("von startUp nach stopMotor");
+				Serial.println("stopMotor");
 			} else if ((timeCur - timeLast) >= interval) {
 				Navi.setSpeed(speedRegulated);
 				currentState = driveStraightRegulated;
-				Serial.println("von startUp nach driveStraightRegulated");
+				Serial.println("driveStraightRegulated");
 			}
 		}
 			break;
@@ -179,12 +179,12 @@ void StateMachine::evalStateMachine() {
 				Navi.setSpeed(speedStop);
 				timeStop = timeCur;
 				currentState = stopMotor;
-				Serial.println("von driveShortlyStraight nach stopMotor (Gegner erkannt)");
+				Serial.println("stopMotor");
 			}else if ((timeCur - timeLast) >= intervalDrive) {
 				Navi.setSpeed(speedmaxturn);
 				timeLast = timeCur;
 				currentState = nextPoint;
-				Serial.println("von driveShortlyStraight nach nextPoint");
+				Serial.println("nextPoint");
 			}
 		}
 			break;
@@ -198,20 +198,20 @@ void StateMachine::evalStateMachine() {
 				timeStop = timeCur;
 				timeLast = timeCur;
 				currentState = avoidCrash;
-				Serial.println("von driveStraightRegulated nach avoidCrash (Gegner erkannt)");
+				Serial.println("avoidCrash");
 			} else if (Navi.getDeviation() < Navi.getSafetyRadius()) {
 				// Zielkreis erreicht?
 				Navi.setSpeed(speedStop);
 				timeStop = timeCur;
 				currentState = stopMotor;
-				Serial.println("von driveStraightRegulated nach stopMotor (Ziel erreicht)");
+				Serial.println("stopMotor");
 			} else if (Navi.CrashIncoming() ){
 				// Zu nah an den Spielplanken
 				Navi.setSpeed(speedStop);
 				timeStop = timeCur;
 				timeLast = timeCur;
 				currentState = avoidCrash;
-				Serial.println("von driveStraightRegulated nach avoidCrash (Planken zu nah)");
+				Serial.println("avoidCrash");
 			}
 		}
 			break;
@@ -224,18 +224,18 @@ void StateMachine::evalStateMachine() {
 			if (Navi.getJSON().getStopEnemy()) {
 				timeLast = timeCur;
 				currentState = avoidCrash;
-				Serial.println("von stopMotor nach avoidCrash");
+				Serial.println("avoidCrash");
 			// Letzte Position erreicht?
 			} else if (Navi.getPosition() == Navi.getMaximalPosition()) {
 				Navi.setSpeed(speedmaxturn);
 				currentState = finished;
-				Serial.println("von stopMotor nach finished");
+				Serial.println("finished");
 			// Wenn an Position gebremst worden ist, nächste Position anfahren
 			} else if ((Navi.getSpeed() == 0))  {
 				timeLast = timeCur;
 				Navi.setNextPosition();
 				currentState = nextPoint;
-				Serial.println("von stopMotor nach nextPoint");
+				Serial.println("nextPoint");
 			}
 
 		}
@@ -344,14 +344,14 @@ void StateMachine::evalStateMachine() {
 					timeLast = timeCur;
 					Navi.setSpeed(speedmaxturn);
 					currentState = turnToAvoidTargetAngle;
-					Serial.println("von AvoidCrash nach turnToAvoidTargetAngle (Master)");
+					Serial.println("turnToAvoidTargetAngle");
 				// Betafahrzeug: Wenn Zeit abgelaufen ist und das andere Fahrzeug verschwunden ist weiterfahren
 				} else {
 					if (!Navi.getJSON().getStopEnemy()) {
 						timeLast = timeCur;
 						Navi.setSpeed(speedStartUp);
 						currentState = startUp;
-						Serial.println("von avoidCrash nach nextPoint (Slave)");
+						Serial.println("nextPoint");
 					}
 				}
 			}
@@ -366,7 +366,7 @@ void StateMachine::evalStateMachine() {
 				timeToPlay = playTime;
 				Navi.setPosition(0);
 				currentState = nextPoint;
-				Serial.println("von finished nach nextPoint");
+				Serial.println("nextPoint");
 			}
 		}
 			break;
@@ -377,7 +377,7 @@ void StateMachine::evalStateMachine() {
 				timeToPlay = playTime;
 				Navi.setPosition(0);
 				currentState = nextPoint;
-				Serial.println("von finishedOutOfTime nach nextPoint");
+				Serial.println("nextPoint");
 			}
 		}
 			break;
