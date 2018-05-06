@@ -13,6 +13,11 @@ QString TurnToTargetAngleID = "turnToTargetAngle";
 QString StartUpID = "startUp";
 QString DriveStraightRegulatedID = "driveStraightRegulated";
 QString StopMotorID = "stopMotor";
+QString AvoidCrashID = "avoidCrash";
+QString TurnToAvoidTargetAngleID = "turnToAvoidTargetAngle";
+QString DriveShortlyStraightID = "driveShortlyStraight";
+QString FinishedOutOfTimeID = "finishedOutOfTime";
+QString FinishedID = "finished";
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -104,6 +109,11 @@ void MainWindow::readDataFromArduino(){
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
 
     else if(serialBuffer == NextPointID){
@@ -114,6 +124,11 @@ void MainWindow::readDataFromArduino(){
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
 
     else if(serialBuffer == TurnToTargetAngleID){
@@ -124,6 +139,11 @@ void MainWindow::readDataFromArduino(){
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
 
     else if(serialBuffer == StartUpID){
@@ -134,6 +154,11 @@ void MainWindow::readDataFromArduino(){
         ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
 
     else if(serialBuffer == DriveStraightRegulatedID){
@@ -144,6 +169,11 @@ void MainWindow::readDataFromArduino(){
         ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
 
     else if(serialBuffer == StopMotorID){
@@ -154,9 +184,89 @@ void MainWindow::readDataFromArduino(){
         ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
         ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
     }
 
-    // if coordinates received display them in associated QTextBrowser
+    else if(serialBuffer == AvoidCrashID){
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
+
+        ui->nextPoint->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->initState->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+    }
+
+    else if(serialBuffer == TurnToAvoidTargetAngleID){
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
+
+        ui->nextPoint->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->initState->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+    }
+
+    else if(serialBuffer == DriveShortlyStraightID){
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
+
+        ui->nextPoint->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->initState->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+    }
+
+    else if(serialBuffer == FinishedOutOfTimeID){
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
+
+        ui->nextPoint->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->initState->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+    }
+
+    else if(serialBuffer == FinishedID){
+        ui->finished->setStyleSheet("QTextBrowser { background-color: rgb(0, 255, 0);}");
+
+        ui->nextPoint->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->initState->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->startUp->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->stopMotor->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveStraightRegulated->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->turnToAvoidTargetAngle->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->driveShortlyStraight->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->finishedOutOfTime->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+        ui->avoidCrash->setStyleSheet("QTextBrowser { background-color: rgb(255, 255, 255);}");
+    }
+
+    // if coordinates received, display them in associated QTextBrowser
     else if(serialBuffer.startsWith("x")){
         qDebug() << "x am start" << endl;
         serialBuffer.remove("x:");

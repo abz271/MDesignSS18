@@ -27,7 +27,6 @@ StateMachine::StateMachine() {
 	pinMode(switchPin, INPUT_PULLUP);
 }
 
-
 // Aktualisiert alle Daten aus Odometrie und Kommunikation
 void StateMachine::UpdateData() {
 	Navi.UpdateData();

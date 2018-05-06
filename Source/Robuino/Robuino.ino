@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "StateMachine.h"
 
-StateMachine StateM;
+StateMachine stateM;
 void setup() {
 	Serial.begin(9600);
 	Serial.println("Hallo, Robuino");
@@ -10,6 +10,6 @@ void setup() {
 }
 
 void loop() {
-	StateM.UpdateData();			// Alle Werte aktualsieren
-	StateM.evalStateMachine();		// Statemachine durchlaufen
+	stateM.UpdateData();			// Alle Werte aktualsieren
+	stateM.evalStateMachine();		// Statemachine durchlaufen
 }
