@@ -20,6 +20,18 @@ public slots:
     void readDataFromArduino();
 
 private:
+    // current coordinates from arduino
+    float x;
+    float y;
+
+    // maximum coordinates from arduino
+    const float x_max_robuino = 3000;
+    const float y_max_robuino = 2000;
+
+    // maximum coordinates scaled to size of gamefield-image
+    float x_max;
+    float y_max;
+
     Ui::MainWindow *ui;
     QSerialPort* arduino;
     static const quint16 arduino_uno_vendor_id = 9025;
@@ -28,6 +40,11 @@ private:
     bool arduino_is_available;
     QByteArray serialData;
     QString serialBuffer;
+    // gamefield has to be a pointer, so paintEvent() can use it
+    QPixmap* gamefield;
+
+protected:
+   void paintEvent(QPaintEvent* e);
 };
 
 #endif // MAINWINDOW_H

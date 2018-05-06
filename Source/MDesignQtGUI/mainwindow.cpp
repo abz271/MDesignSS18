@@ -24,8 +24,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap gamefield("C:/MDesign/Spielfeld.png");
-    ui->gamefield_label->setPixmap(gamefield);
+    gamefield = new QPixmap("C:/MDesign/Spielfeld.png");
+    ui->gamefield_label->setPixmap(*gamefield);
+
+    x_max = gamefield->width();
+    y_max = gamefield->height();
+    x = 0;
+    y = 0;
+
     // declare serialport
     arduino = new QSerialPort;
     arduino_is_available = false;
@@ -271,12 +277,14 @@ void MainWindow::readDataFromArduino(){
         qDebug() << "x am start" << endl;
         serialBuffer.remove("x:");
         ui->x_display->setText(serialBuffer);
+        x = serialBuffer.toFloat();
     }
 
     else if(serialBuffer.startsWith("y")){
         qDebug() << "y am start" << endl;
         serialBuffer.remove("y:");
         ui->y_display->setText(serialBuffer);
+        y = serialBuffer.toFloat();
     }
 
     else if(serialBuffer.startsWith("a")){
@@ -286,4 +294,21 @@ void MainWindow::readDataFromArduino(){
     }
 
     qDebug() << serialBuffer;
+    // update() triggers paintEvent
+    QWidget::update();
+}
+
+void MainWindow::paintEvent(QPaintEvent* e){
+    QPainter painter(gamefield);
+
+    QPen redPen;
+    redPen.setWidth(5);
+    redPen.setColor("red");
+    painter.setPen(redPen);
+
+    // arduino-coordinates mapped to size of gamfield-picture
+    QPoint point(x*(x_max/x_max_robuino), y*(y_max/y_max_robuino));
+
+    painter.drawPoint(point);
+    ui->gamefield_label->setPixmap(*gamefield);
 }
