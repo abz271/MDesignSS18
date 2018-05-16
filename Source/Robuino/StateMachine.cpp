@@ -36,6 +36,18 @@ void StateMachine::UpdateData() {
 
 // Statemachine zur Steuerung des Fahrzyklus
 void StateMachine::evalStateMachine() {
+  Serial.print("x:");
+  Serial.print(Navi.getX());
+  Serial.print("\n");
+  
+  Serial.print("y:");
+  Serial.print(Navi.getY());
+  Serial.print("\n");
+
+  Serial.print("a:");
+  Serial.print(Navi.getAngle());
+  Serial.print("\n");
+  
 	// Globale Spielzeit definieren
 	if ((playTime - timeToPlay) >= intervalPlaytime){
 		if (currentState != initState){

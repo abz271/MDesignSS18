@@ -274,21 +274,18 @@ void MainWindow::readDataFromArduino(){
 
     // if coordinates received, display them in associated QTextBrowser
     else if(serialBuffer.startsWith("x")){
-        qDebug() << "x am start" << endl;
         serialBuffer.remove("x:");
         ui->x_display->setText(serialBuffer);
         x = serialBuffer.toFloat();
     }
 
     else if(serialBuffer.startsWith("y")){
-        qDebug() << "y am start" << endl;
         serialBuffer.remove("y:");
         ui->y_display->setText(serialBuffer);
         y = serialBuffer.toFloat();
     }
 
     else if(serialBuffer.startsWith("a")){
-        qDebug() << "angle am start" << endl;
         serialBuffer.remove("a:");
         ui->angle_display->setText(serialBuffer);
     }

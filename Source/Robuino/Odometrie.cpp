@@ -10,6 +10,7 @@ Encoder rightWheel(3, 5);
 
 // Konstruktur
 Odometrie::Odometrie() {
+  alpha_odometrie = 90;
 }
 
 void Odometrie::setXposition(int x_odometrie){

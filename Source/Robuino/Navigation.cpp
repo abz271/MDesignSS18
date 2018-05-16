@@ -79,7 +79,6 @@ void Navigation::UpdateData() {
 	}
 }
 
-
 // Berechnung des Winkels zwischen der aktuellen Position und der Zielposition
 float Navigation::getCalculateAngle(int x, int y) {
 	double delta_x = x - x_aktuell;
@@ -117,7 +116,6 @@ void Navigation::turnToTargetAngle() {
 		}
 	}
 }
-
 
 // Zum Zielpunkt fahren
 // Implementiert als P-Regler, der die Motorgeschwindigkeit auf beiden Rädern ändert(Abhängig von der Abweichung)
@@ -265,4 +263,6 @@ int Navigation::signum(float sign){
 	return NumberSign;
 }
 
-
+float Navigation::getAngle(){
+  return Odo.getAngle();
+}

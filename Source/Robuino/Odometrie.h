@@ -14,7 +14,6 @@ private:
     float y_odometrie = 0;
     float alpha_odometrie = 90;
 
-
     // Rad Geometrie
     const float radDurchmesserLinks = 52.85;
     const float radUmfangLinks = radDurchmesserLinks * PI;

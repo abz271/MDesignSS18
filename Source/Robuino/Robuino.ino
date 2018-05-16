@@ -6,7 +6,7 @@ void setup() {
 	Serial.begin(9600);
 	Serial.println("Hallo, Robuino");
 	// Startparameter der Odometrie setzen ( x, y, Winkel)
-	StateM.getNavigation().setStartParameters(300, 1700, 270);
+	stateM.getNavigation().setStartParameters(0,0, 270);
 }
 
 void loop() {
