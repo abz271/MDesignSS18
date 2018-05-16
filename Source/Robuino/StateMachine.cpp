@@ -53,6 +53,7 @@ void StateMachine::evalStateMachine() {
 		if (currentState != initState){
 			Navi.setSpeed(speedStop);
 			currentState = finishedOutOfTime;
+      Serial.println("finishedOutOfTime");
 		}
 	}
 	Navi.setPrePositionteams(true);			// Case = StartUp => Werte des Positionsteam vorbereiten
@@ -118,6 +119,7 @@ void StateMachine::evalStateMachine() {
 	// switch Case für Weiterschaltbedingungen
 		// InitState
 		case initState: {
+      Serial.println("initState");
 			if (!digitalRead(switchPin)) {					// Taster wird abgefragt, um das Programm zu starten
 				timeLast = timeCur;
 				timeToPlay = playTime;

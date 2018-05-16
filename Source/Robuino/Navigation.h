@@ -21,8 +21,8 @@ private:
     float targetAngle = 0;	// Zielwinkel
     // Attribute f�r die Positionsbestimmung
 
-    int X_Koordinaten[4] = {100, 100, 0, 0};		// Alpha Fahrzeug Koordinaten in mm
-    int Y_Koordinaten[4] = {0, 100, 100, 0};		// Alpha Fahrzeug Koordinaten in mm
+    int X_Koordinaten[4] = {0, 0, 0, 0};		// Alpha Fahrzeug Koordinaten in mm
+    int Y_Koordinaten[4] = {0, 0, 0, 0};		// Alpha Fahrzeug Koordinaten in mm
 
     //int X_Koordinaten[6] = {0, 0, 0, 0, 0, 0};		// Beta Fahrzeug Koordinaten in mm
     //int Y_Koordinaten[6] = {0, 0, 0, 0, 0, 0};		// Beta Fahrzeug Koordinaten in mm
